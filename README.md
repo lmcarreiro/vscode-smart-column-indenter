@@ -1,8 +1,60 @@
-# smart-column-indenter README
+# Smart Column Indenter
 
-This is the README for your extension "smart-column-indenter". After writing up a brief description, we recommend including the following sections.
+This extension adds support for indenting code into columns, to make your code more beautiful, readable, clear and with fewer lines of code.
 
 ## Features
+
+### With column indentation
+
+```ts
+{ label: 'Id'          , name: 'id'          , hidden: true                                                                                      },
+{ label: 'Name'        , name: 'name'        , hidden: false, width: 25, align: 'left' , editable: true , edittype: 'text'                       },
+{ label: 'Description' , name: 'description' , hidden: false, width: 50, align: 'left' , editable: false, edittype: 'text'                       },
+{ label: 'Value'       , name: 'value'       , hidden: false, width: 25, align: 'right', editable: true , edittype: 'text', formatter: 'number'  }
+```
+
+### Without column indentation
+
+```ts
+{ label: 'Id', name: 'id', hidden: true },
+{ label: 'Name', name: 'name', hidden: false, width: 25, align: 'left', editable: true, edittype: 'text' },
+{ label: 'Description', name: 'description', hidden: false, width: 50, align: 'left', editable: false, edittype: 'text' },
+{ label: 'Value', name: 'value', hidden: false, width: 25, align: 'right', editable: true, edittype: 'text', formatter: 'number' }
+
+//or
+
+{
+    label: 'Id',
+    name: 'id',
+    hidden: true
+}, {
+    label: 'Name',
+    name: 'name',
+    hidden: false,
+    width: 25,
+    align: 'left',
+    editable: true,
+    edittype: 'text'
+}, {
+    label: 'Description',
+    name: 'description',
+    hidden: false,
+    width: 50,
+    align: 'left',
+    editable: false,
+    edittype: 'text'
+}, {
+    label: 'Value',
+    name: 'value',
+    hidden: false,
+    width: 25,
+    align: 'right',
+    editable: true,
+    edittype: 'text',
+    formatter: 'number'
+}
+
+```
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
