@@ -1,11 +1,18 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es6",
+        "target": "es2015",
+        "moduleResolution": "node",
         "outDir": "out",
         "lib": [
             "es6"
         ],
+        "experimentalDecorators": true,
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
         "sourceMap": true,
         "rootDir": "src"
     },
