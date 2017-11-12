@@ -91,7 +91,7 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "smart-column-indenter": "next"
+        "smart-column-indenter": "0.0.1-dev.20171112.3"
     },
     "devDependencies": {
         "typescript": "latest",
