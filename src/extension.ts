@@ -2,6 +2,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import Indenter from 'smart-column-indenter/src/Indenter';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -33,24 +34,34 @@ export function activate(context: vscode.ExtensionContext) {
 
 function indent2(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
-    vscode.window.showInformationMessage('indent2');
+    //TODO: create/pass configuration to indent in only two columns
+    replaceSelection(textEditor, edit, (code, extension) => new Indenter().indent(code, extension));
 }
+
 function indentN(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
+{
+    replaceSelection(textEditor, edit, (code, extension) => new Indenter().indent(code, extension));
+}
+
+function removeLineBreaks(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
+{
+    replaceSelection(textEditor, edit, code => code.replace(/(\r\n|\r|\n)\s*/g, ""));
+}
+
+function replaceSelection(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, replacer: (code: string, extension: string) => string): void
 {
     const sel = textEditor.selection;
     const firstLine = textEditor.document.lineAt(sel.start.line);
     const lastLine = textEditor.document.lineAt(sel.end.line);
+    const expandedSelection = new vscode.Range(firstLine.lineNumber, firstLine.range.start.character, lastLine.lineNumber, lastLine.range.end.character);
 
-    const range = new vscode.Range(firstLine.lineNumber, firstLine.range.start.character, lastLine.lineNumber, lastLine.range.end.character);
+    const extension = textEditor.document.fileName.replace(/.*[.]/g, "");
+    const code = textEditor.document.getText(expandedSelection);
 
-    const code = textEditor.document.getText(range);
-    const file = textEditor.document.fileName;
-    
-    console.log(code);
-}
-function removeLineBreaks(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
-{
-    vscode.window.showInformationMessage('removeLineBreaks');
+    const newCode = replacer(code, extension);
+
+    textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
+    edit.replace(textEditor.selection, newCode);
 }
 
 // this method is called when your extension is deactivated
