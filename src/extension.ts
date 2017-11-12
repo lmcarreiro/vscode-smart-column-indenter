@@ -37,7 +37,16 @@ function indent2(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...
 }
 function indentN(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
-    vscode.window.showInformationMessage('indentN');
+    const sel = textEditor.selection;
+    const firstLine = textEditor.document.lineAt(sel.start.line);
+    const lastLine = textEditor.document.lineAt(sel.end.line);
+
+    const range = new vscode.Range(firstLine.lineNumber, firstLine.range.start.character, lastLine.lineNumber, lastLine.range.end.character);
+
+    const code = textEditor.document.getText(range);
+    const file = textEditor.document.fileName;
+    
+    console.log(code);
 }
 function removeLineBreaks(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
