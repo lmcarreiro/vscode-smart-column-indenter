@@ -39,7 +39,7 @@
                 "title": "Indent into N Columns"
             },
             {
-                "command": "onCommand:extension.smartColumnIndenter.removeLineBreaks",
+                "command": "extension.smartColumnIndenter.removeLineBreaks",
                 "title": "Remove Line Breaks"
             }
         ],
