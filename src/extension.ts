@@ -35,12 +35,12 @@ export function activate(context: vscode.ExtensionContext) {
 function indent2(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
     //TODO: create/pass configuration to indent in only two columns
-    replaceSelection(textEditor, edit, (code, extension) => new Indenter().indent(code, extension));
+    replaceSelection(textEditor, edit, (code, extension) => new Indenter(code, extension).indent());
 }
 
 function indentN(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
-    replaceSelection(textEditor, edit, (code, extension) => new Indenter().indent(code, extension));
+    replaceSelection(textEditor, edit, (code, extension) => new Indenter(code, extension).indent());
 }
 
 function removeLineBreaks(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
@@ -50,18 +50,24 @@ function removeLineBreaks(textEditor: vscode.TextEditor, edit: vscode.TextEditor
 
 function replaceSelection(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, replacer: (code: string, extension: string) => string): void
 {
-    const sel = textEditor.selection;
-    const firstLine = textEditor.document.lineAt(sel.start.line);
-    const lastLine = textEditor.document.lineAt(sel.end.line);
-    const expandedSelection = new vscode.Range(firstLine.lineNumber, firstLine.range.start.character, lastLine.lineNumber, lastLine.range.end.character);
+    try {
+        const sel = textEditor.selection;
+        const firstLine = textEditor.document.lineAt(sel.start.line);
+        const lastLine = textEditor.document.lineAt(sel.end.line);
+        const expandedSelection = new vscode.Range(firstLine.lineNumber, firstLine.range.start.character, lastLine.lineNumber, lastLine.range.end.character);
 
-    const extension = textEditor.document.fileName.replace(/.*[.]/g, "");
-    const code = textEditor.document.getText(expandedSelection);
+        const extension = textEditor.document.fileName.replace(/.*[.]/g, "");
+        const code = textEditor.document.getText(expandedSelection);
 
-    const newCode = replacer(code, extension);
+        const newCode = replacer(code, extension);
 
-    textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
-    edit.replace(textEditor.selection, newCode);
+        textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
+        edit.replace(textEditor.selection, newCode);
+    }
+    catch (e) {
+        vscode.window.showInformationMessage(e.message);
+        console.error(e);
+    }
 }
 
 // this method is called when your extension is deactivated
