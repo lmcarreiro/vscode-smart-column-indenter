@@ -23,9 +23,7 @@
         "indenter",
         "indentation",
         "table",
-        "column",
-        "smart",
-        "readable"
+        "column"
     ],
     "activationEvents": [
         "onCommand:extension.smartColumnIndenter.removeLineBreaks",
