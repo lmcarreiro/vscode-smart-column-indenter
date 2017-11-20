@@ -34,26 +34,31 @@ export function activate(context: vscode.ExtensionContext) {
 
 function indent2(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
-    //TODO: create/pass configuration to indent in only two columns
-    replaceSelection(textEditor, edit, (code, extension) => new Indenter(code, extension).indent());
+    replaceSelection(textEditor, edit, (code, extension) => new Indenter(code, extension).indent("2"));
 }
 
 function indentN(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
-    replaceSelection(textEditor, edit, (code, extension) => new Indenter(code, extension).indent());
+    replaceSelection(textEditor, edit, (code, extension) => new Indenter(code, extension).indent("N"));
 }
 
 function removeLineBreaks(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, ...args: any[]): void
 {
-    replaceSelection(textEditor, edit, code => code.replace(/(\r\n|\r|\n)\s*/g, ""));
+    replaceSelection(textEditor, edit, code => code.replace(/(\r\n|\r|\n)\s*/g, " "), false, false);
 }
 
-function replaceSelection(textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit, replacer: (code: string, extension: string) => string): void
+function replaceSelection(
+    textEditor: vscode.TextEditor
+    , edit: vscode.TextEditorEdit
+    , replacer: (code: string, extension: string) => string
+    , allowOneLine: boolean = true
+    , keepSelection: boolean = true
+): void
 {
     try {
         const sel = textEditor.selection;
         const firstLine = textEditor.document.lineAt(sel.start.line);
-        const lastLine = textEditor.document.lineAt(sel.end.line);
+        const lastLine = textEditor.document.lineAt(!allowOneLine && sel.start.line === sel.end.line ? (sel.end.line + 1) : sel.end.line);
         const expandedSelection = new vscode.Range(firstLine.lineNumber, firstLine.range.start.character, lastLine.lineNumber, lastLine.range.end.character);
 
         const extension = textEditor.document.fileName.replace(/.*[.]/g, "");
@@ -63,6 +68,10 @@ function replaceSelection(textEditor: vscode.TextEditor, edit: vscode.TextEditor
 
         textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.end);
         edit.replace(textEditor.selection, newCode);
+
+        if (!keepSelection) {
+            textEditor.selection = new vscode.Selection(expandedSelection.start, expandedSelection.start);
+        }
     }
     catch (e) {
         vscode.window.showInformationMessage(e.message);

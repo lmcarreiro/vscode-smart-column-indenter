@@ -1,8 +1,8 @@
 {
     "name": "vscode-smart-column-indenter",
     "displayName": "Smart Column Indenter",
-    "description": "(This extensions is not finished yet. Please, wait for the first release (version 1.0.0) to rate or write a review. I only published it because it's my first one and I had to learn how to publish it.) This extension adds support for indenting code into columns, to make your code more beautiful, readable, clear and with fewer lines of code.",
-    "version": "0.0.5",
+    "description": "This extension adds support for indenting code into columns, to make your code more beautiful, readable, clear and with fewer lines of code.",
+    "version": "0.0.6",
     "publisher": "lmcarreiro",
     "engines": {
         "vscode": "^1.17.0"
@@ -18,17 +18,16 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello",
+        "onCommand:extension.smartColumnIndenter.removeLineBreaks",
         "onCommand:extension.smartColumnIndenter.indent2",
-        "onCommand:extension.smartColumnIndenter.indentN",
-        "onCommand:extension.smartColumnIndenter.removeLineBreaks"
+        "onCommand:extension.smartColumnIndenter.indentN"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "extension.smartColumnIndenter.removeLineBreaks",
+                "title": "Remove Line Breaks"
             },
             {
                 "command": "extension.smartColumnIndenter.indent2",
@@ -37,17 +36,19 @@
             {
                 "command": "extension.smartColumnIndenter.indentN",
                 "title": "Indent into N Columns"
-            },
-            {
-                "command": "extension.smartColumnIndenter.removeLineBreaks",
-                "title": "Remove Line Breaks"
             }
         ],
         "keybindings": [
             {
+                "command": "extension.smartColumnIndenter.removeLineBreaks",
+                "key": "ctrl+i ctrl+i",
+                "mac": "cmd+i cmd+i",
+                "when": "editorTextFocus && !editorReadonly"
+            },
+            {
                 "command": "extension.smartColumnIndenter.indent2",
-                "key": "ctrl+i ctrl+2",
-                "mac": "cmd+i cmd+2",
+                "key": "ctrl+i ctrl+j",
+                "mac": "cmd+i cmd+j",
                 "when": "editorTextFocus && !editorReadonly"
             },
             {
@@ -55,16 +56,15 @@
                 "key": "ctrl+i ctrl+n",
                 "mac": "cmd+i cmd+n",
                 "when": "editorTextFocus && !editorReadonly"
-            },
-            {
-                "command": "extension.smartColumnIndenter.removeLineBreaks",
-                "key": "ctrl+i ctrl+i",
-                "mac": "cmd+i cmd+i",
-                "when": "editorTextFocus && !editorReadonly"
             }
         ],
         "menus": {
             "editor/context": [
+                {
+                    "command": "extension.smartColumnIndenter.removeLineBreaks",
+                    "group": "2_indentation@3",
+                    "when": "editorTextFocus && !editorReadonly"
+                },
                 {
                     "command": "extension.smartColumnIndenter.indent2",
                     "group": "2_indentation@1",
@@ -73,11 +73,6 @@
                 {
                     "command": "extension.smartColumnIndenter.indentN",
                     "group": "2_indentation@2",
-                    "when": "editorTextFocus && !editorReadonly"
-                },
-                {
-                    "command": "extension.smartColumnIndenter.removeLineBreaks",
-                    "group": "2_indentation@3",
                     "when": "editorTextFocus && !editorReadonly"
                 }
             ]
@@ -91,7 +86,7 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "smart-column-indenter": "0.0.1-dev.20171118.2"
+        "smart-column-indenter": "0.0.1-dev.20171120"
     },
     "devDependencies": {
         "typescript": "latest",
