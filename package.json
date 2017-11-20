@@ -2,7 +2,7 @@
     "name": "vscode-smart-column-indenter",
     "displayName": "Smart Column Indenter",
     "description": "This extension adds support for indenting code into columns, to make your code more beautiful, readable, clear and with fewer lines of code.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "lmcarreiro",
     "engines": {
         "vscode": "^1.17.0"
@@ -15,7 +15,17 @@
         "url": "https://github.com/lmcarreiro/vscode-smart-column-indenter.git"
     },
     "categories": [
+        "Formatters",
         "Other"
+    ],
+    "keywords": [
+        "indent",
+        "indenter",
+        "indentation",
+        "table",
+        "column",
+        "smart",
+        "readable"
     ],
     "activationEvents": [
         "onCommand:extension.smartColumnIndenter.removeLineBreaks",

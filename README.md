@@ -2,8 +2,6 @@
 
 This extension adds support for indenting code into columns, to make your code more beautiful, readable, clear and with fewer lines of code.
 
-**This extensions is not finished yet. Please, wait for the first release (version 1.0.0) to rate or write a review. I only published it because it's my first one and I had to learn how to publish it.**
-
 The work is in progress at the github repository: https://github.com/lmcarreiro/smart-column-indenter
 
 ## Features
