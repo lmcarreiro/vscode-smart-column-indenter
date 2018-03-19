@@ -6,114 +6,30 @@ The work is in progress at the github repository: https://github.com/lmcarreiro/
 
 ## Features
 
-### With column indentation
+1. **Indent into 2 Columns (Ctrl+I Ctrl+J)** Used in key-value pair which the values aren't similar.
+2. **Indent into N Columns (Ctrl+I Ctrl+N)** Used in a sequence of two or more lines that are similar
+3. **Remove Line Breaks (Ctrl+I Ctrl+I)** Used to remove line breaks (normally in object literals)
 
-```ts
-{ label: 'Id'          , name: 'id'          , hidden: true                                                                                      },
-{ label: 'Name'        , name: 'name'        , hidden: false, width: 25, align: 'left' , editable: true , edittype: 'text'                       },
-{ label: 'Description' , name: 'description' , hidden: false, width: 50, align: 'left' , editable: false, edittype: 'text'                       },
-{ label: 'Value'       , name: 'value'       , hidden: false, width: 25, align: 'right', editable: true , edittype: 'text', formatter: 'number'  }
-```
+![Demo](demo.gif)
 
-### Without column indentation
+## Limitations
 
-```ts
-{ label: 'Id', name: 'id', hidden: true },
-{ label: 'Name', name: 'name', hidden: false, width: 25, align: 'left', editable: true, edittype: 'text' },
-{ label: 'Description', name: 'description', hidden: false, width: 50, align: 'left', editable: false, edittype: 'text' },
-{ label: 'Value', name: 'value', hidden: false, width: 25, align: 'right', editable: true, edittype: 'text', formatter: 'number' }
+Today this extension only works with *.ts, *.js and *.json files. 
 
-//or
-
-{
-    label: 'Id',
-    name: 'id',
-    hidden: true
-}, {
-    label: 'Name',
-    name: 'name',
-    hidden: false,
-    width: 25,
-    align: 'left',
-    editable: true,
-    edittype: 'text'
-}, {
-    label: 'Description',
-    name: 'description',
-    hidden: false,
-    width: 50,
-    align: 'left',
-    editable: false,
-    edittype: 'text'
-}, {
-    label: 'Value',
-    name: 'value',
-    hidden: false,
-    width: 25,
-    align: 'right',
-    editable: true,
-    edittype: 'text',
-    formatter: 'number'
-}
-
-```
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Feel free to make Pull Requests to add support to other languages and add new features.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.8
 
-### 1.0.0
+Just add some gif to make a better presentation of the extension features.
 
-Initial release of ...
+### 0.0.7
 
-### 1.0.1
+The MVP.
 
-Fixed issue #.
+### 0.0.1-0.0.6
 
-### 1.1.0
-
-Added features X, Y, and Z.
+Just proof of concept and learning how to publish extensions in VSCode.
 
 -----------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
