@@ -20,9 +20,13 @@ Feel free to make Pull Requests to add support to other languages and add new fe
 
 ## Release Notes
 
+### 0.0.10
+
+Just changing extension tags. I realize now that the more used term is "code alignment".
+
 ### 0.0.9
 
-Just add an icon
+Just add an icon.
 
 ### 0.0.8
 
