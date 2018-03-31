@@ -14,11 +14,15 @@ The work is in progress at the github repository: https://github.com/lmcarreiro/
 
 ## Limitations
 
-Today this extension only works with *.ts, *.js and *.json files. 
+Today this extension only works with `*.ts`, `*.js` and `*.json` files. It will try to work with others extensions, but you may get some issues because it will try to use TypeScript lexer as default when it doesn't find the correct one for the extension of the file.
 
 Feel free to make Pull Requests to add support to other languages and add new features.
 
 ## Release Notes
+
+### 0.0.13
+
+Set TypeScript scanner as default for languages that doesn't have one yet.
 
 ### 0.0.12
 
